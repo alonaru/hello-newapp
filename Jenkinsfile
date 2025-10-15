@@ -5,12 +5,6 @@ def artifactory = "docker.io"
 def appimage = "docker.io/${repo}/${appname}"
 def apptag = "${env.BUILD_NUMBER}"
 
-properties([
-  parameters([
-    booleanParam(name: 'DEPLOY', defaultValue: false, description: 'Trigger deployment stage')
-  ])
-])
-
 podTemplate(containers: [
       containerTemplate(name: 'jnlp', image: 'jenkins/inbound-agent', ttyEnabled: true),
       containerTemplate(name: 'docker', image: 'gcr.io/kaniko-project/executor:debug-v0.19.0', command: "/busybox/cat", ttyEnabled: true)
@@ -18,11 +12,6 @@ podTemplate(containers: [
   volumes: [
      configMapVolume(mountPath: '/kaniko/.docker/', configMapName: 'docker-cred')
   ])  {
-    properties([
-  parameters([
-    booleanParam(name: 'DEPLOY', defaultValue: false, description: 'Trigger deployment stage')
-  ])
-])
     node(POD_LABEL) {
         stage('chackout') {
             container('jnlp') {
@@ -44,7 +33,7 @@ podTemplate(containers: [
 
         stage('deploy') {
             container('docker') {
-	      if (DEPLOY=) {
+	      if (DEPLOY=true) {
                 echo "***** Doing some deployment stuff *********"
              }  else {
                 echo "***** NO DEPLOY - Doing somthing else. Testing? *********"
