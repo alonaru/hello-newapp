@@ -18,6 +18,11 @@ podTemplate(containers: [
   volumes: [
      configMapVolume(mountPath: '/kaniko/.docker/', configMapName: 'docker-cred')
   ])  {
+    properties([
+  parameters([
+    booleanParam(name: 'DEPLOY', defaultValue: false, description: 'Trigger deployment stage')
+  ])
+])
     node(POD_LABEL) {
         stage('chackout') {
             container('jnlp') {
