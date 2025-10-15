@@ -4,7 +4,7 @@ def repo = "alonaru"  // Replace with your DockerHub username
 def artifactory = "docker.io" 
 def appimage = "docker.io/${repo}/${appname}"
 def apptag = "${env.BUILD_NUMBER}"
-def DEPLOY = true
+def DEPLOY = "true"
 
 podTemplate(containers: [
       containerTemplate(name: 'jnlp', image: 'jenkins/inbound-agent', ttyEnabled: true),
