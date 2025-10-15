@@ -1,5 +1,5 @@
 def appname = "hello-newapp"
-def repo = "elevy99927"  // Replace with your DockerHub username
+def repo = "alonaru"  // Replace with your DockerHub username
 def appimage = "${repo}/${appname}"
 def apptag = "${env.BUILD_NUMBER}"
 
