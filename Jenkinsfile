@@ -27,7 +27,7 @@ podTemplate(containers: [
         stage('build') {
             container('kaniko') {
                 echo "Building docker image with kaniko..."
-	            sh "/kaniko/executor --context . --dockerfile Dockerfile --destination=${appimage} --insecure --skip-tls-verify"
+	            sh "/kaniko/executor --context . --dockerfile Dockerfile --destination=${appimage} --insecure --skip-tls-verify --force"
             }
         } //end build
         stage('helm install') {
