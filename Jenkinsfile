@@ -33,7 +33,9 @@ podTemplate(containers: [
         stage('helm install') {
             container('helm') {
                 echo "Running Helm install..."
-                sh "helm install newapp ./helm-chart"
+                sh "curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3"
+                sh "chmod 700 get_helm.sh"
+                sh "./get_helm.sh"
             }
         }
         stage('deploy') {
