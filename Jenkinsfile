@@ -4,7 +4,7 @@ def repo = "alonaru"  // Replace with your DockerHub username
 def artifactory = "docker.io" 
 def appimage = "docker.io/${repo}/${appname}"
 def apptag = "${env.BUILD_NUMBER}"
-def deploy1 = true
+def deploy = true
 
 
 podTemplate(containers: [
@@ -35,7 +35,7 @@ podTemplate(containers: [
 
         stage('deploy') {
             container('docker') {
-	      if (deploy1) {
+	      if (deploy) {
                 echo "***** Doing some deployment stuff *********"
              }  else {
                 echo "***** NO DEPLOY - Doing somthing else. Testing? *********"
