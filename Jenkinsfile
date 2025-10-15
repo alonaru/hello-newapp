@@ -35,7 +35,7 @@ podTemplate(containers: [
 
         stage('deploy') {
             container('docker') {
-	      if ($deploy1) {
+	      if (deploy1) {
                 echo "***** Doing some deployment stuff *********"
              }  else {
                 echo "***** NO DEPLOY - Doing somthing else. Testing? *********"
