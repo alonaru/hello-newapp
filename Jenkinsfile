@@ -10,7 +10,7 @@ def deploy = true
 
 podTemplate(containers: [
       containerTemplate(name: 'jnlp', image: 'jenkins/inbound-agent', ttyEnabled: true),
-      containerTemplate(name: 'docker', image: 'gcr.io/kaniko-project/executor:debug-v0.19.0', command: "/busybox/cat", ttyEnabled: true)
+      containerTemplate(name: 'docker', image: 'gcr.io/kaniko-project/executor:debug-v0.19.0', command: "/busybox/cat", ttyEnabled: true),
       containerTemplate(name: 'helm', image: 'alpine/helm:3.13.1', command: 'cat', ttyEnabled: true)
   ],
   volumes: [
