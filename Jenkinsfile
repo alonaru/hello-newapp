@@ -28,6 +28,7 @@ podTemplate(containers: [
             container('kaniko') {
                 echo "Building docker image with kaniko..."
 	            sh "/kaniko/executor --context . --dockerfile Dockerfile --destination=${appimage} --insecure --skip-tls-verify --force"
+                sh 'cat /kaniko/.docker/config.json || echo "No config found"'
             }
         } //end build
         stage('helm install') {
